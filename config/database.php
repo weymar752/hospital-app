@@ -14,9 +14,6 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-            'busy_timeout' => null,
-            'journal_mode' => null,
-            'synchronous' => null,
         ],
 
         'mysql' => [
@@ -48,23 +45,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'require', // ⬅️ SSL REQUERIDO
-            'options' => extension_loaded('pdo_pgsql') ? [
-                PDO::PGSQL_ATTR_SSL_MODE => PDO::PGSQL_SSL_REQUIRE,
-            ] : [],
-        ],
-
-        'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
+            'sslmode' => 'require', // ⬅️ SSL CONFIGURADO AQUÍ
         ],
 
     ],
