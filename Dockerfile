@@ -1,4 +1,4 @@
-# Usa imagen PHP con Apache (versión más estable)
+# Usa imagen PHP con Apache (versión más estable) - v2
 FROM php:8.2-apache-bullseye
 
 # Instala solo lo esencial para Laravel + PostgreSQL
