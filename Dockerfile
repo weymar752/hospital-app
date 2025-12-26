@@ -19,25 +19,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copia el código
 COPY . /var/www/html
 
-# Directorio de trabajo
-WORKDIR /var/www/html
-
-# Instala dependencias PHP
-RUN composer install --no-dev --optimize-autoloader
-
-# Instala Node.js y construye assets
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install && npm run build
-
-# Configura Apache para Laravel (DocumentRoot en public/)
-RUN echo '<VirtualHost *:80>\n\
-    DocumentRoot /var/www/html/public\n\
-    <Directory /var/www/html/public>\n\
-        AllowOverride All\n\
-        Require all granted\n\
-    </Directory>\n\
-    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
-    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+# Copia configuración de Apache
+COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Habilita mod_rewrite para Laravel
 RUN a2enmod rewrite
