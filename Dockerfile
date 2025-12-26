@@ -26,7 +26,7 @@ WORKDIR /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 
 # Instala Node.js y construye assets
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm ci && npm run build
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs && npm install && npm run build
 
 # Configura permisos y Laravel
 RUN chown -R www-data:www-data /var/www/html \
