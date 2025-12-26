@@ -23,6 +23,8 @@ services:
         value: true  # Temporal para debug
       - key: APP_KEY
         value: base64:sflYuZzIkk9tdFHJr/j4NGFDId7VnfHpDvVx6T2aNQ4=
+      - key: APP_URL
+        value: https://hospital-app-uinx.onrender.com
       - key: LOG_CHANNEL
         value: single
       - key: SESSION_SECURE_COOKIE
