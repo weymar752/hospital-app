@@ -26,7 +26,7 @@ services:
       - key: APP_URL
         value: https://hospital-app-uinx.onrender.com
       - key: LOG_CHANNEL
-        value: single
+        value: stderr
       - key: SESSION_SECURE_COOKIE
         value: true
       - key: DB_CONNECTION
