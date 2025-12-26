@@ -20,7 +20,9 @@ services:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG 
-        value: false
+        value: true  # Temporal para debug
+      - key: APP_KEY
+        value: base64:sflYuZzIkk9tdFHJr/j4NGFDId7VnfHpDvVx6T2aNQ4=
       - key: LOG_CHANNEL
         value: stderr
       - key: SESSION_SECURE_COOKIE
