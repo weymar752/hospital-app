@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\FichaMedicaController;
@@ -27,7 +28,7 @@ Route::get('/', function () {
         ];
         return view('home', compact('hospitalCount', 'doctorCount', 'patientCount', 'routes'));
     } catch (\Exception $e) {
-        \Log::error('Error en home route: ' . $e->getMessage());
+        Log::error('Error en home route: ' . $e->getMessage());
         return response('Error interno: ' . $e->getMessage(), 500);
     }
 })->name('home');
