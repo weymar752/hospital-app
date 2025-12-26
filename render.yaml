@@ -25,7 +25,7 @@ services:
       - key: APP_DEBUG 
         value: true  # Temporal para debug
       - key: APP_KEY
-        value: base64:cGxlYXNlX3JlcGxhY2Vfd2l0aF9hX25ld19rZXlfZ2VuZXJhdGVkX2J5X2FydGlzYW5fa2V5OmdlbmVyYXRl
+        value: base64:mDpf2WEKwlE4rOAKhtlCzCRDCC2ksfNKkzAND3CySD4=
       - key: APP_URL
         value: $RENDER_EXTERNAL_URL
       - key: LOG_CHANNEL
