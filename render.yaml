@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: hospital-app
+    env: php
+    plan: free  # Cambia a 'free' si prefieres plan gratuito (con limitaciones)
+    region: oregon
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      npm ci
+      npm run build
+      php artisan storage:link
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+      php artisan migrate --force
+    startCommand: |
+      php artisan optimize:clear
+      php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG 
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_SECURE_COOKIE
+        value: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d56u8tu3jp1c73akpk6g-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: hospital_ii2p
+      - key: DB_USERNAME
+        value: hospital_ii2p_user
+      - key: DB_PASSWORD
+        value: 7KGVD7K1zGeZwUvSgNYku56i2e9I2Z2E
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
