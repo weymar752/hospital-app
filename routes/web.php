@@ -11,7 +11,26 @@ use App\Http\Controllers\PerfilController;
 
 
 Route::get('/', function () {
-    return 'Test - La ruta funciona';
+    try {
+        $hospitalCount = \App\Models\Hospital::count();
+        $doctorCount = \App\Models\Personal_Medico::count();
+        $patientCount = \App\Models\Paciente::count();
+        $routes = [
+            'home' => route('home'),
+            'login' => route('login'),
+            'hospitales_index' => route('hospitales.index'),
+            'pacientes_create' => route('pacientes.create'),
+            'pacientes_index' => route('pacientes.index'),
+            'personal_medico_index' => route('personal_medico.index'),
+            'fichas_index' => route('fichas.index'),
+            'fichas_create' => route('fichas.create'),
+            'perfil' => route('perfil'),
+        ];
+        return view('home', compact('hospitalCount', 'doctorCount', 'patientCount', 'routes'));
+    } catch (\Exception $e) {
+        Log::error('Error en home route: ' . $e->getMessage());
+        return response('Error interno: ' . $e->getMessage(), 500);
+    }
 })->name('home');
 
 Route::resource('pacientes', PacienteController::class);
