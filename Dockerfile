@@ -42,7 +42,7 @@ RUN echo '<VirtualHost *:80>\n\
 # Habilita mod_rewrite para Laravel
 RUN a2enmod rewrite
 
-# Configura permisos y Laravel
+# Configura permisos y Laravel (forzar redeploy)
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && php artisan config:cache \
