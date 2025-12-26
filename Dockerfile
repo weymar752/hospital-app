@@ -49,6 +49,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && php artisan route:cache \
     && php artisan view:cache \
     && php artisan migrate --force \
+    && php artisan db:seed --force \
     && php artisan storage:link
 
 # Expone puerto
