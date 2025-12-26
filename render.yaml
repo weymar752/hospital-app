@@ -24,7 +24,7 @@ services:
       - key: APP_KEY
         value: base64:sflYuZzIkk9tdFHJr/j4NGFDId7VnfHpDvVx6T2aNQ4=
       - key: LOG_CHANNEL
-        value: stderr
+        value: single
       - key: SESSION_SECURE_COOKIE
         value: true
       - key: DB_CONNECTION
