@@ -19,13 +19,19 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copia el código
 COPY . /var/www/html
 
+# Directorio de trabajo
+WORKDIR /var/www/html
+
+# Instala dependencias PHP
+RUN composer install --no-dev --optimize-autoloader
+
 # Copia configuración de Apache
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
 # Habilita mod_rewrite para Laravel
 RUN a2enmod rewrite
 
-# Configura permisos y Laravel (forzar redeploy)
+# Configura permisos y Laravel
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && php artisan config:cache \
@@ -33,6 +39,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && php artisan view:cache \
     && php artisan migrate --force \
     && php artisan db:seed --force \
+    && php artisan storage:link \
     && php artisan storage:link
 
 # Expone puerto
