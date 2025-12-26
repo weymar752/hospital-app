@@ -1,4 +1,4 @@
-*.log
+﻿*.log
 .DS_Store
 .env
 .env.backup
@@ -20,3 +20,5 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+.env.production
+# End of gitignore
