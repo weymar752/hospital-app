@@ -8,11 +8,13 @@ services:
       composer install --no-dev --optimize-autoloader
       npm ci
       npm run build
+      rm -f public/storage
       php artisan storage:link
       php artisan config:cache
       php artisan route:cache
       php artisan view:cache
       php artisan migrate --force
+      php artisan db:seed --force
     startCommand: |
       php artisan optimize:clear
       php artisan serve --host=0.0.0.0 --port=$PORT
@@ -24,7 +26,7 @@ services:
       - key: APP_KEY
         value: base64:sflYuZzIkk9tdFHJr/j4NGFDId7VnfHpDvVx6T2aNQ4=
       - key: APP_URL
-        value: https://hospital-app-uinx.onrender.com
+        value: $RENDER_EXTERNAL_URL
       - key: LOG_CHANNEL
         value: stderr
       - key: SESSION_SECURE_COOKIE
