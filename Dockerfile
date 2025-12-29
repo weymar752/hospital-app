@@ -1,4 +1,4 @@
-# Usa imagen PHP con Apache (versión más estable) - v2
+# Usa imagen PHP con Apache (versión más estable)
 FROM php:8.2-apache-bullseye
 
 # Instala solo lo esencial para Laravel + PostgreSQL
@@ -31,20 +31,20 @@ COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 # Habilita mod_rewrite para Laravel
 RUN a2enmod rewrite
 
-# Configura permisos y Laravel
+# --- CAMBIO IMPORTANTE ---
+# Configura SOLO permisos aquí.
+# Quitamos los comandos 'artisan' de esta parte para evitar que cacheen configuraciones vacías.
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 775 /var/www/html/bootstrap/cache \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache \
-    && php artisan migrate --force \
-    && php artisan db:seed --force \
-    && (php artisan storage:link || true) \
-    && php artisan storage:link
+    && chmod -R 775 /var/www/html/storage \
+    && chmod -R 775 /var/www/html/bootstrap/cache
 
-# Expone puerto
+# Expone puerto 80
 EXPOSE 80
 
-# Inicia Apache
-CMD ["apache2-foreground"]
+# --- INICIO DE LA APLICACIÓN ---
+# Usamos 'sh -c' para encadenar comandos.
+# 1. Crea el enlace simbólico del storage
+# 2. Crea la caché de configuración y rutas (YA con acceso a la BD y variables)
+# 3. Ejecuta migraciones (porque no tienes acceso a terminal SSH)
+# 4. Inicia Apache
+CMD sh -c "php artisan storage:link && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && apache2-foreground"
