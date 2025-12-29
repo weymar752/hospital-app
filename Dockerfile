@@ -36,7 +36,8 @@ RUN a2enmod rewrite
 # Quitamos los comandos 'artisan' de esta parte para evitar que cacheen configuraciones vacías.
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
-    && chmod -R 775 /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/bootstrap/cache \
+    && chmod -R 755 /var/www/html/public
 
 # Expone puerto 80
 EXPOSE 80
