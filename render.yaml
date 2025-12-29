@@ -1,39 +1,19 @@
 services:
   - type: web
     name: hospital-app
-    env: php
-    plan: free  # Cambia a 'free' si prefieres plan gratuito (con limitaciones)
+    env: docker  # <--- CAMBIO IMPORTANTE: Usamos Docker, no php nativo
+    plan: free
     region: oregon
-    buildCommand: |
-      composer install --no-dev --optimize-autoloader
-      npm ci
-      npm run build
-      rm -f public/storage
-      php artisan storage:link
-      php artisan config:cache
-      php artisan route:cache
-      php artisan view:cache
-      php artisan migrate --force
-      php artisan db:seed --force
-    startCommand: |
-      php artisan optimize:clear
-      php artisan route:clear
-      php artisan serve --host=0.0.0.0 --port=$PORT
+    # Eliminamos buildCommand y startCommand porque el Dockerfile ya se encarga de eso.
     envVars:
-      - key: APP_ENV
-        value: production
-      - key: APP_DEBUG 
-        value: true  # Temporal para debug
       - key: APP_KEY
-        value: base64:mDpf2WEKwlE4rOAKhtlCzCRDCC2ksfNKkzAND3CySD4=
+        sync: false # Esto le dice a Render que use el valor secreto del Dashboard
+      - key: APP_DEBUG
+        value: true
       - key: APP_URL
         value: $RENDER_EXTERNAL_URL
       - key: LOG_CHANNEL
-        value: stack
-      - key: LOG_LEVEL
-        value: debug
-      - key: SESSION_SECURE_COOKIE
-        value: true
+        value: stderr # <--- CRUCIAL para ver errores
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
@@ -44,11 +24,4 @@ services:
         value: hospital_ii2p
       - key: DB_USERNAME
         value: hospital_ii2p_user
-      - key: DB_PASSWORD
-        value: 7KGVD7K1zGeZwUvSgNYku56i2e9I2Z2E
-      - key: SESSION_DRIVER
-        value: database
-      - key: CACHE_STORE
-        value: database
-      - key: QUEUE_CONNECTION
-        value: database
+      # NO pongas DB_PASSWORD aquí, deja que la tome del dashboard

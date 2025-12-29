@@ -34,6 +34,7 @@ RUN a2enmod rewrite
 # Configura permisos y Laravel
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
+    && chmod -R 775 /var/www/html/bootstrap/cache \
     && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache \
