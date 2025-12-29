@@ -47,4 +47,4 @@ EXPOSE 80
 # 2. Crea la caché de configuración y rutas (YA con acceso a la BD y variables)
 # 3. Ejecuta migraciones (porque no tienes acceso a terminal SSH)
 # 4. Inicia Apache
-CMD sh -c "php artisan storage:link && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && apache2-foreground"
+CMD sh -c "php artisan storage:link && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && apache2-foreground"
