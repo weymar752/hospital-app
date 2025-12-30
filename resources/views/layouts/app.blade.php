@@ -51,30 +51,28 @@
     <ul>
         @if(session()->has('usuario'))
             @if(session('tipo_usuario') === 'medico')
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                <li><a href="/Hospital/public/pacientes"><i class="fa fa-users"></i> Pacientes</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
-                <li><a href="/Hospital/public/personal_medico"><i class="fa fa-user-md"></i> Personal Médico</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-user-md"></i> Personal Médico</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
                 <!-- MODO OSCURO -->
                 <li><a href="#" id="darkModeToggle"><i class="fas fa-moon"></i> Modo Oscuro</a></li>
             @elseif(session('tipo_usuario') === 'paciente')
                 <!-- Menú para pacientes -->
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-calendar"></i> Mis Citas</a></li>
-                <li><a href="/Hospital/public/fichas/create"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
+                <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
                 <!-- MODO OSCURO -->
                 <li><a href="#" id="darkModeToggle"><i class="fas fa-moon"></i> Modo Oscuro</a></li>
             @endif
             @else
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
-                <!-- MODO OSCURO -->
                 <li><a href="#" id="darkModeToggle"><i class="fas fa-moon"></i> Modo Oscuro</a></li>
                 
         @endif
@@ -120,25 +118,24 @@
             @if(session()->has('usuario'))
             @if(session('tipo_usuario') === 'medico')
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                <li><a href="/Hospital/public/pacientes"><i class="fa fa-users"></i> Pacientes</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
-                <li><a href="/Hospital/public/personal_medico"><i class="fa fa-users"></i> Personal Medico</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-users"></i> Personal Medico</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
             </ul>
             @elseif(session('tipo_usuario') === 'paciente')
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-calendar"></i> Mis Citas</a></li>
-                <li><a href="/Hospital/public/fichas/create"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
+                <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
             </ul>
             @endif
             @else
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
             </ul>
             @endif
@@ -166,24 +163,24 @@
             @if(session()->has('usuario'))
             @if(session('tipo_usuario') === 'medico')
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/pacientes"><i class="fa fa-users"></i> Pacientes</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
-                <li><a href="/Hospital/public/personal_medico"><i class="fa fa-users"></i> Personal Medico</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-users"></i> Personal Medico</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-file-medical"></i> Fichas Médicas</a></li>
             </ul>
             @elseif(session('tipo_usuario') === 'paciente')
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/perfil"><i class="fa fa-user"></i> Mi Perfil</a></li>
-                <li><a href="/Hospital/public/fichas"><i class="fa fa-calendar"></i> Mis Citas</a></li>
-                <li><a href="/Hospital/public/fichas/create"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
+                <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
             </ul>
             @endif
             @else
             <ul class="nav-links">
-                <li><a href="/Hospital/public/"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="/Hospital/public/hospitales"><i class="fas fa-hospital"></i> Hospitales</a></li>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
             </ul>
             @endif
@@ -192,8 +189,6 @@
         
     </div>
     
-
-
 
 
 <main>
