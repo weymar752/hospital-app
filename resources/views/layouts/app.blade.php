@@ -119,6 +119,7 @@
             @if(session('tipo_usuario') === 'medico')
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
                 <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
                 <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-users"></i> Personal Medico</a></li>
@@ -164,6 +165,7 @@
             @if(session('tipo_usuario') === 'medico')
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
                 <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
                 <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-users"></i> Personal Medico</a></li>

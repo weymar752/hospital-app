@@ -12,34 +12,34 @@ use Illuminate\Http\Request;
 class FichaMedicaController extends Controller
 {
     public function index()
-    {
-        $usuario = session('usuario');
-        $tipoUsuario = session('tipo_usuario');
+{
+    $usuario = session('usuario');
+    $tipoUsuario = session('tipo_usuario');
 
-        $query = Ficha_Medica::select(
-            'ficha_medica.*',
-            'paciente.Nombres',
-            'paciente.Apellido_P',
-            'paciente.Apellido_M',
-            'personal_medico.Nombres_PM',
-            'personal_medico.Apellido_P_PM',
-            'hospital.Nombre_Hospital',
-            'unidad.Nombre_Unidad'
-        )
-        ->join('paciente', 'paciente.CI_Paciente', '=', 'ficha_medica.CI_Paciente')
-        ->join('personal_medico', 'personal_medico.Ci_Personal_Medico', '=', 'ficha_medica.Ci_Personal_Medico')
-        ->join('hospital', 'hospital.ID_Hospital', '=', 'ficha_medica.ID_Hospital')
-        ->join('unidad', 'unidad.ID_Unidad', '=', 'ficha_medica.ID_Unidad');
+    $query = Ficha_Medica::select(
+        'Ficha_Medica.*',               // Cambiado de ficha_medica.*
+        'Paciente.Nombres',             // Cambiado de paciente.Nombres
+        'Paciente.Apellido_P',
+        'Paciente.Apellido_M',
+        'Personal_Medico.Nombres_PM',   // Cambiado de personal_medico
+        'Personal_Medico.Apellido_P_PM',
+        'Hospital.Nombre_Hospital',     // Cambiado de hospital
+        'Unidad.Nombre_Unidad'          // Cambiado de unidad
+    )
+    // Los nombres en el primer parámetro de join deben ser EXACTOS a la DB
+    ->join('Paciente', 'Paciente.CI_Paciente', '=', 'Ficha_Medica.CI_Paciente')
+    ->join('Personal_Medico', 'Personal_Medico.Ci_Personal_Medico', '=', 'Ficha_Medica.Ci_Personal_Medico')
+    ->join('Hospital', 'Hospital.ID_Hospital', '=', 'Ficha_Medica.ID_Hospital')
+    ->join('Unidad', 'Unidad.ID_Unidad', '=', 'Ficha_Medica.ID_Unidad');
 
-        // Si es paciente, solo ve sus propias fichas
-        if ($tipoUsuario === 'paciente') {
-            $query->where('ficha_medica.CI_Paciente', $usuario->CI_Paciente);
-        }
-
-        $fichas = $query->get();
-
-        return view('fichas.index', compact('fichas'));
+    if ($tipoUsuario === 'paciente') {
+        $query->where('Ficha_Medica.CI_Paciente', $usuario->CI_Paciente);
     }
+
+    $fichas = $query->get();
+
+    return view('fichas.index', compact('fichas'));
+}
 
     public function create()
     {
