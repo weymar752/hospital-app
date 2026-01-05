@@ -40,4 +40,9 @@ class Ficha_Medica extends Model
     {
         return $this->belongsTo(Hospital::class, 'ID_Hospital', 'ID_Hospital');
     }
+
+    public function unidad()
+    {
+        return $this->belongsTo(Unidad::class, 'ID_Unidad', 'ID_Unidad');
+    }
 }
