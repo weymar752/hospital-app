@@ -1086,6 +1086,12 @@ table thead tr:hover {
     margin-bottom: 20px;
 }
 
+.filter-buttons .btn {
+    width: auto;
+    display: inline-flex;
+    white-space: nowrap;
+}
+
 .filter-divider {
     border-left: 2px solid #e5e7eb;
     height: 30px;

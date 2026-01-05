@@ -1121,6 +1121,12 @@ table tbody tr:hover {
     margin-bottom: 20px;
 }
 
+.filter-buttons .btn {
+    width: auto;
+    display: inline-flex;
+    white-space: nowrap;
+}
+
 .filter-divider {
     border-left: 2px solid #4b5563;
     height: 30px;
