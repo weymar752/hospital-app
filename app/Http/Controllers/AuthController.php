@@ -24,14 +24,22 @@ class AuthController extends Controller
         // Buscar paciente por CI y luego validar contraseña
         $paciente = Paciente::where('CI_Paciente', $request->ci)->first();
         if ($paciente && Hash::check($request->contrasena, $paciente->getRawOriginal('Contrasena'))) {
-            session(['usuario' => $paciente->CI_Paciente, 'tipo_usuario' => 'paciente']);
+            session([
+                'ci_usuario' => $paciente->CI_Paciente,
+                'tipo_usuario' => 'paciente',
+                'usuario' => $paciente // Mantener objeto para vistas
+            ]);
             return redirect()->route('home');
         }
 
         // Buscar personal médico por CI y luego validar contraseña
         $medico = Personal_Medico::where('Ci_Personal_Medico', $request->ci)->first();
         if ($medico && Hash::check($request->contrasena, $medico->getRawOriginal('Contrasena'))) {
-            session(['usuario' => $medico->Ci_Personal_Medico, 'tipo_usuario' => 'medico']);
+            session([
+                'ci_usuario' => $medico->Ci_Personal_Medico,
+                'tipo_usuario' => 'medico',
+                'usuario' => $medico // Mantener objeto para vistas
+            ]);
             return redirect()->route('home');
         }
 

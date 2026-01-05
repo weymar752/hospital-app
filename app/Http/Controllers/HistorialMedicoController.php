@@ -11,7 +11,7 @@ class HistorialMedicoController extends Controller
     public function index()
     {
         // Obtener el CI del paciente autenticado desde la sesión
-        $ciPaciente = session('usuario');
+        $ciPaciente = session('ci_usuario');
         
         if (!$ciPaciente || session('tipo_usuario') !== 'paciente') {
             return view('historial_medico.index', ['historial' => collect()]);
