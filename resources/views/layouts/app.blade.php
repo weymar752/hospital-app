@@ -204,8 +204,8 @@
     <div>
         <h4>Contacto</h4>
         <ul style="list-style: none; padding: 0; color: #c6d4df;">
-            <li>Email: weymar752@gmail.com</li>
-            <li>Tel: +591 65623943</li>
+            <li>Email: info@ciudadhumana.com</li>
+            <li>Dirección: Sanchez Lima 2206, Zona Sopocachi.</li>
         </ul>
     </div>
     <div>

@@ -1,7 +1,16 @@
         // Script para mostrar y ocultar la barra lateral
     function toggleSidebar() {
-        document.getElementById('sidebar').classList.toggle('active');
-        document.getElementById('mainContent').classList.toggle('active');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const overlay = document.getElementById('sidebarOverlay');
+        
+        sidebar.classList.toggle('active');
+        mainContent.classList.toggle('active');
+        
+        // Mostrar/ocultar overlay
+        if (overlay) {
+            overlay.classList.toggle('active');
+        }
     }
 
     // Script para mostrar y ocultar submenús dentro de la barra lateral
@@ -10,6 +19,35 @@
         const parent = event.target.parentElement;
         parent.classList.toggle('active');
     }
+
+    // Cerrar sidebar al hacer clic en el overlay
+    document.addEventListener('DOMContentLoaded', function() {
+        const overlay = document.getElementById('sidebarOverlay');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        
+        if (overlay) {
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                mainContent.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+        // Cerrar sidebar al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            // Si el sidebar está activo y el clic no fue en el sidebar ni en el botón de menú
+            if (sidebar && sidebar.classList.contains('active')) {
+                if (!sidebar.contains(event.target) && event.target !== menuToggle) {
+                    sidebar.classList.remove('active');
+                    if (mainContent) mainContent.classList.remove('active');
+                    if (overlay) overlay.classList.remove('active');
+                }
+            }
+        });
+    });
 
         // Script para manejar la visibilidad de la barra lateral al hacer scroll
     let lastScrollTopSidebar = 0;
