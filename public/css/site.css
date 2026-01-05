@@ -1151,25 +1151,26 @@ table thead tr:hover {
     }
     
     /* Tablas responsive con scroll horizontal */
-    .form-container table {
-        display: block;
+    .form-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
-        white-space: nowrap;
     }
     
-    table thead,
-    table tbody,
-    table th,
-    table td,
-    table tr {
-        display: table-cell;
+    table {
+        min-width: 100%;
+        width: max-content;
     }
     
     table th,
     table td {
         padding: 8px 10px;
         font-size: 0.85rem;
+        min-width: 100px;
+    }
+    
+    table th:first-child,
+    table td:first-child {
+        min-width: 80px;
     }
     
     /* Botones en tablas */
@@ -1206,8 +1207,16 @@ table thead tr:hover {
         font-size: 1rem;
     }
     
-    .nav2 {
-        display: none !important;
+    .nav2 .nav-links {
+        justify-content: center;
+    }
+    
+    .nav2 .nav-links li {
+        margin: 0 5px;
+    }
+    
+    .nav2 .nav-links a {
+        font-size: 0.75rem;
     }
     
     .form-container {
