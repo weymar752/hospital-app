@@ -22,7 +22,8 @@
     <h2>Fichas Médicas</h2>
 
     @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
-        <a href="{{ route('fichas-medicas.create') }}" class="btn btn-primary mb-3">Crear Ficha Médica</a>
+        <a href="{{ route('fichas.create') }}" class="btn btn-primary mb-3">Crear Ficha Médica</a>
+
     @endif
 
     @if(session('success'))
@@ -72,7 +73,7 @@
                 <td>{{ $ficha->Motivo_Consulta }}</td>
                 <td>
                     @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
-                        <form action="{{ route('fichas-medicas.updateEstado', $ficha->No_Ficha_Medica) }}" method="POST" class="estado-form">
+                        <form action="{{ route('fichas.updateEstado', $ficha->No_Ficha_Medica) }}" method="POST" class="estado-form">
                             @csrf
                             @method('PUT')
                             <select name="Estado_Cita" class="estado-select" onchange="this.form.submit()">
@@ -87,7 +88,7 @@
                 </td>
                 @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
                 <td>
-                    <form action="{{ route('fichas-medicas.destroy', $ficha->No_Ficha_Medica) }}" method="POST" style="display:inline">
+                    <form action="{{ route('fichas.destroy', $ficha->No_Ficha_Medica) }}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" onclick="return confirm('¿Eliminar ficha?')">Eliminar</button>

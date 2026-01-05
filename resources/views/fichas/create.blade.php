@@ -5,7 +5,7 @@
 <div class="form-container">
     <h2>Crear Ficha Médica</h2>
 
-    <form action="{{ route('fichas-medicas.store') }}" method="POST">
+    <form action="{{ route('fichas.store') }}" method="POST">
         @csrf
 
         @if(session()->has('usuario') && session('tipo_usuario') === 'paciente')
