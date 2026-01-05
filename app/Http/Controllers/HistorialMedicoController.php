@@ -13,6 +13,15 @@ class HistorialMedicoController extends Controller
         // Obtener el paciente autenticado desde la sesión
         $ciPaciente = session('usuario');
         
+        // 🔍 DEBUG - Eliminar después de verificar
+        dd([
+            'ci_paciente' => $ciPaciente,
+            'tipo_usuario' => session('tipo_usuario'),
+            'total_historiales_bd' => Historial_Medico::count(),
+            'historiales_este_ci' => Historial_Medico::where('CI_Paciente', $ciPaciente)->count(),
+            'todos_los_ci_en_bd' => Historial_Medico::pluck('CI_Paciente')->unique()->toArray()
+        ]);
+        
         if (!$ciPaciente || session('tipo_usuario') !== 'paciente') {
             return view('historial_medico.index', ['historial' => collect()]);
         }
