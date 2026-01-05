@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="form-container">
-    <h2>Historial Médico</h2>
+    <h2>Mi Historial Médico</h2>
 
     @if(session('success'))
         <div class="alert alert-success">
@@ -10,11 +10,19 @@
         </div>
     @endif
 
-    @if($historial->isEmpty())
+    @if(!session()->has('usuario') || session('tipo_usuario') !== 'paciente')
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> Debes iniciar sesión como paciente para ver tu historial médico.
+        </div>
+    @elseif($historial->isEmpty())
         <div class="alert alert-info">
-            No existen registros en el historial médico.
+            <i class="fas fa-info-circle"></i> No tienes registros en tu historial médico.
+            <br><small>Los registros se crean automáticamente cuando completas una cita médica.</small>
         </div>
     @else
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> Se encontraron {{ $historial->count() }} registro(s) en tu historial.
+        </div>
         <table>
             <thead>
                 <tr>
@@ -34,7 +42,7 @@
                 @foreach($historial as $h)
                 <tr>
                     <td>{{ $h->ID_Historial }}</td>
-                    <td>{{ $h->Fecha_Atencion }}</td>
+                    <td>{{ \Carbon\Carbon::parse($h->Fecha_Atencion)->format('d/m/Y') }}</td>
                     <td>{{ $h->hospital->Nombre_Hospital ?? '—' }}</td>
                     <td>{{ $h->unidad->Nombre_Unidad ?? '—' }}</td>
                     <td>
