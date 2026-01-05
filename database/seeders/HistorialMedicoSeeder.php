@@ -2,101 +2,82 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Historial_Medico;
+use App\Models\Ficha_Medica;
 
 class HistorialMedicoSeeder extends Seeder
 {
     public function run(): void
     {
-        $historiales = [
-            // Historial para Adriana Marcia
-            [
-                'CI_Paciente' => '9919520',
-                'Fecha_Creacion' => '2024-01-15',
-                'Documento' => '/storage/historiales/adriana_mendoza_historial.pdf'
-            ],
-            // Historiales para los otros pacientes
-            [
-                'CI_Paciente' => '12345678',
-                'Fecha_Creacion' => '2024-01-10',
-                'Documento' => '/storage/historiales/juan_gonzales_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '23456789',
-                'Fecha_Creacion' => '2024-01-12',
-                'Documento' => '/storage/historiales/maria_rodriguez_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '34567890',
-                'Fecha_Creacion' => '2024-01-08',
-                'Documento' => '/storage/historiales/carlos_martinez_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '45678901',
-                'Fecha_Creacion' => '2024-01-14',
-                'Documento' => '/storage/historiales/ana_gutierrez_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '56789012',
-                'Fecha_Creacion' => '2024-01-11',
-                'Documento' => '/storage/historiales/roberto_fernandez_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '67890123',
-                'Fecha_Creacion' => '2024-01-13',
-                'Documento' => '/storage/historiales/laura_paredes_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '78901234',
-                'Fecha_Creacion' => '2024-01-09',
-                'Documento' => '/storage/historiales/diego_castillo_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '89012345',
-                'Fecha_Creacion' => '2024-01-16',
-                'Documento' => '/storage/historiales/sandra_morales_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '90123456',
-                'Fecha_Creacion' => '2024-01-07',
-                'Documento' => '/storage/historiales/jorge_navarro_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '11223344',
-                'Fecha_Creacion' => '2024-01-17',
-                'Documento' => '/storage/historiales/patricia_salazar_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '22334455',
-                'Fecha_Creacion' => '2024-01-18',
-                'Documento' => '/storage/historiales/fernando_campos_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '33445566',
-                'Fecha_Creacion' => '2024-01-19',
-                'Documento' => '/storage/historiales/gabriela_aguilar_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '44556677',
-                'Fecha_Creacion' => '2024-01-20',
-                'Documento' => '/storage/historiales/ricardo_guzman_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '55667788',
-                'Fecha_Creacion' => '2024-01-21',
-                'Documento' => '/storage/historiales/monica_rios_historial.pdf'
-            ],
-            [
-                'CI_Paciente' => '66778899',
-                'Fecha_Creacion' => '2024-01-22',
-                'Documento' => '/storage/historiales/oscar_reyes_historial.pdf'
-            ]
-        ];
+        // Obtener solo fichas COMPLETADAS
+        $fichasCompletadas = Ficha_Medica::where('Estado_Cita', 'Completada')->get();
 
-        foreach ($historiales as $historial) {
-            Historial_Medico::create($historial);
+        foreach ($fichasCompletadas as $ficha) {
+
+            Historial_Medico::create([
+                'No_Ficha_Medica' => $ficha->No_Ficha_Medica,
+                'CI_Paciente' => $ficha->CI_Paciente,
+                'ID_Hospital' => $ficha->ID_Hospital,
+                'ID_Unidad' => $ficha->ID_Unidad,
+                'Ci_Personal_Medico' => $ficha->Ci_Personal_Medico,
+
+                'Fecha_Atencion' => $ficha->Fecha_Cita,
+
+                'Enfermedad_Principal' => $this->enfermedadPorUnidad($ficha->ID_Unidad),
+                'Diagnostico' => $this->diagnosticoPorUnidad($ficha->ID_Unidad),
+                'Tratamiento' => $this->tratamientoPorUnidad($ficha->ID_Unidad),
+                'Observaciones' => 'Paciente atendido sin complicaciones. Se recomienda seguimiento médico.',
+            ]);
         }
+    }
+
+    // =======================
+    // MÉTODOS AUXILIARES
+    // =======================
+
+    private function enfermedadPorUnidad($unidad)
+    {
+        return match ($unidad) {
+            1 => 'Control general de salud',
+            3 => 'Hipertensión arterial',
+            4 => 'Rinitis alérgica',
+            5 => 'Migraña crónica',
+            7 => 'Alergia alimentaria',
+            8 => 'Control ginecológico',
+            9 => 'Infección respiratoria leve',
+            10 => 'Asma bronquial',
+            default => 'Evaluación médica general',
+        };
+    }
+
+    private function diagnosticoPorUnidad($unidad)
+    {
+        return match ($unidad) {
+            1 => 'Paciente en buen estado general. Signos vitales normales.',
+            3 => 'Presión arterial elevada, requiere control periódico.',
+            4 => 'Reacción alérgica estacional confirmada.',
+            5 => 'Migraña con antecedentes familiares.',
+            7 => 'Reacción alérgica moderada confirmada.',
+            8 => 'Examen ginecológico sin hallazgos patológicos.',
+            9 => 'Infección respiratoria leve, sin complicaciones.',
+            10 => 'Asma controlada, requiere seguimiento.',
+            default => 'Evaluación médica realizada.',
+        };
+    }
+
+    private function tratamientoPorUnidad($unidad)
+    {
+        return match ($unidad) {
+            1 => 'Recomendaciones generales y control anual.',
+            3 => 'Antihipertensivos y control mensual.',
+            4 => 'Antihistamínicos y evitar alérgenos.',
+            5 => 'Analgésicos y control neurológico.',
+            7 => 'Antihistamínicos y dieta controlada.',
+            8 => 'Control anual y recomendaciones preventivas.',
+            9 => 'Antibióticos leves y reposo.',
+            10 => 'Broncodilatadores y control neumológico.',
+            default => 'Tratamiento según evaluación médica.',
+        };
     }
 }

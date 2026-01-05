@@ -29,7 +29,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-10',
                 'Fecha_Cita' => '2024-02-15',
                 'Hora_Cita' => '09:00:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Seguimiento de tratamiento para alergias',
                 'ID_Unidad' => 4, // Alergología
                 'Ci_Personal_Medico' => '8901234', // Sandra Lucia

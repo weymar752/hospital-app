@@ -1,19 +1,24 @@
 services:
   - type: web
     name: hospital-app
-    env: docker  # <--- CAMBIO IMPORTANTE: Usamos Docker, no php nativo
+    env: docker
     plan: free
     region: oregon
-    # Eliminamos buildCommand y startCommand porque el Dockerfile ya se encarga de eso.
     envVars:
       - key: APP_KEY
-        sync: false # Esto le dice a Render que use el valor secreto del Dashboard
+        sync: false
       - key: APP_DEBUG
-        value: true
+        value: false
+      - key: APP_ENV
+        value: production
       - key: APP_URL
         value: $RENDER_EXTERNAL_URL
       - key: LOG_CHANNEL
-        value: stderr # <--- CRUCIAL para ver errores
+        value: stderr
+      - key: LOG_LEVEL
+        value: debug
+      - key: SESSION_DRIVER
+        value: database
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
@@ -24,4 +29,5 @@ services:
         value: hospital_ii2p
       - key: DB_USERNAME
         value: hospital_ii2p_user
-      # NO pongas DB_PASSWORD aquí, deja que la tome del dashboard
+      - key: DB_PASSWORD
+        sync: false

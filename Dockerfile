@@ -45,7 +45,14 @@ EXPOSE 80
 # --- INICIO DE LA APLICACIÓN ---
 # Usamos 'sh -c' para encadenar comandos.
 # 1. Crea el enlace simbólico del storage
-# 2. Crea la caché de configuración y rutas (YA con acceso a la BD y variables)
-# 3. Ejecuta migraciones (porque no tienes acceso a terminal SSH)
-# 4. Inicia Apache
-CMD sh -c "php artisan storage:link && php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan migrate --force && apache2-foreground"
+# 2. Limpia cachés
+# 3. Ejecuta migraciones
+# 4. Ejecuta seeders (solo si la BD está vacía)
+# 5. Inicia Apache
+CMD sh -c "php artisan storage:link && \
+           php artisan config:clear && \
+           php artisan route:clear && \
+           php artisan view:clear && \
+           php artisan migrate --force && \
+           php artisan db:seed --force && \
+           apache2-foreground"

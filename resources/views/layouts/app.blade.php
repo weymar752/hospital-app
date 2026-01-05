@@ -64,6 +64,7 @@
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
                 <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
+                <li><a href="{{ route('historial_medico.index') }}"><i class="fa fa-notes-medical"></i> Mi Historial Médico</a></li>
                 <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
                 <!-- MODO OSCURO -->
@@ -129,6 +130,7 @@
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('historial_medico.index') }}"><i class="fa fa-notes-medical"></i> Mi Historial Médico</a></li>
                 <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
                 <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
             </ul>
@@ -175,6 +177,7 @@
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('historial_medico.index') }}"><i class="fa fa-notes-medical"></i> Mi Historial Médico</a></li>
                 <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
                 <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
             </ul>

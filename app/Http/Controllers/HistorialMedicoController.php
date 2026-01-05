@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Historial_Medico;
+use Illuminate\Http\Request;
+
+class HistorialMedicoController extends Controller
+{
+    //  Historial de un paciente
+    public function historialPaciente($ciPaciente)
+    {
+        $historial = Historial_Medico::with([
+                'hospital',
+                'unidad',
+                'personalMedico'
+            ])
+            ->where('CI_Paciente', $ciPaciente)
+            ->orderBy('Fecha_Atencion', 'desc')
+            ->get();
+
+        return view('historial_medico.index', compact('historial'));
+    }
+
+    //  Guardar historial médico
+    public function store(Request $request)
+    {
+        $request->validate([
+            'No_Ficha_Medica' => 'required',
+            'CI_Paciente' => 'required',
+            'ID_Hospital' => 'required',
+            'ID_Unidad' => 'required',
+            'Ci_Personal_Medico' => 'required',
+            'Fecha_Atencion' => 'required|date',
+            'Diagnostico' => 'required',
+            'Enfermedad_Principal' => 'required',
+            'Tratamiento' => 'required',
+            'Observaciones' => 'nullable',
+        ]);
+
+        Historial_Medico::create($request->all());
+
+        return redirect()->back()->with('success', 'Historial médico registrado correctamente.');
+    }
+}
