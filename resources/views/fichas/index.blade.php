@@ -22,8 +22,37 @@
     <h2>Fichas Médicas</h2>
 
     @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
-        <a href="{{ route('fichas.create') }}" class="btn btn-primary mb-3">Crear Ficha Médica</a>
-
+        <div class="filter-buttons mb-3">
+            <a href="{{ route('fichas.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Crear Ficha Médica
+            </a>
+            
+            <span class="filter-divider"></span>
+            
+            <a href="{{ route('fichas.index') }}" class="btn btn-secondary">
+                <i class="fas fa-list"></i> Todas
+            </a>
+            <a href="{{ route('fichas.index', ['fecha' => 'hoy']) }}" class="btn btn-info">
+                <i class="fas fa-calendar-day"></i> Fichas de Hoy
+            </a>
+            <a href="{{ route('fichas.index', ['estado' => 'Programada']) }}" class="btn btn-warning">
+                <i class="fas fa-clock"></i> Programadas
+            </a>
+            <a href="{{ route('fichas.index', ['estado' => 'Completada']) }}" class="btn btn-success">
+                <i class="fas fa-check"></i> Completadas
+            </a>
+            
+            @if(isset($unidades) && $unidades->count() > 0)
+                <select class="form-control filter-select" id="filtroUnidad">
+                    <option value="todas">Todas las Unidades</option>
+                    @foreach($unidades as $unidad)
+                        <option value="{{ $unidad->ID_Unidad }}" {{ request('unidad') == $unidad->ID_Unidad ? 'selected' : '' }}>
+                            {{ $unidad->Nombre_Unidad }}
+                        </option>
+                    @endforeach
+                </select>
+            @endif
+        </div>
     @endif
 
     @if(session('success'))
@@ -102,6 +131,19 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Filtro de unidades
+    const filtroUnidad = document.getElementById('filtroUnidad');
+    if (filtroUnidad) {
+        filtroUnidad.addEventListener('change', function() {
+            if (this.value !== 'todas') {
+                window.location.href = '{{ route("fichas.index") }}?unidad=' + this.value;
+            } else {
+                window.location.href = '{{ route("fichas.index") }}';
+            }
+        });
+    }
+
+    // Confirmación de cambio de estado
     const estadoSelects = document.querySelectorAll('.estado-select');
     
     estadoSelects.forEach(select => {

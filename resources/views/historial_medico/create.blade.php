@@ -16,12 +16,12 @@
             <input type="hidden" name="Ci_Personal_Medico" value="{{ $ficha->Ci_Personal_Medico }}">
 
             {{-- Información de la ficha (solo lectura) --}}
-            <div class="info-section mb-4" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                <h4 style="margin-bottom: 15px; color: #2c3e50;">
+            <div class="info-section">
+                <h4>
                     <i class="fas fa-info-circle"></i> Información de la Ficha Médica
                 </h4>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <div>
+                <div class="info-grid">
+                    <div class="info-item">
                         <p><strong><i class="fas fa-user"></i> Paciente:</strong> 
                             {{ $ficha->paciente->Nombres ?? '' }} 
                             {{ $ficha->paciente->Apellido_P ?? '' }}
@@ -30,7 +30,7 @@
                         <p><strong><i class="fas fa-id-card"></i> CI Paciente:</strong> {{ $ficha->CI_Paciente }}</p>
                         <p><strong><i class="fas fa-calendar"></i> Fecha Cita:</strong> {{ \Carbon\Carbon::parse($ficha->Fecha_Cita)->format('d/m/Y') }}</p>
                     </div>
-                    <div>
+                    <div class="info-item">
                         <p><strong><i class="fas fa-hospital"></i> Hospital:</strong> {{ $ficha->hospital->Nombre_Hospital ?? 'N/A' }}</p>
                         <p><strong><i class="fas fa-door-open"></i> Unidad:</strong> {{ $ficha->unidad->Nombre_Unidad ?? 'N/A' }}</p>
                         <p><strong><i class="fas fa-user-md"></i> Médico:</strong> 
@@ -39,7 +39,7 @@
                         </p>
                     </div>
                 </div>
-                <div style="margin-top: 10px;">
+                <div>
                     <p><strong><i class="fas fa-comment-medical"></i> Motivo de Consulta:</strong> {{ $ficha->Motivo_Consulta }}</p>
                 </div>
             </div>

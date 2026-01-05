@@ -1076,3 +1076,24 @@ table thead tr:hover {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
+
+/* Filtros de fichas médicas */
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-divider {
+    border-left: 2px solid #e5e7eb;
+    height: 30px;
+    margin: 0 5px;
+}
+
+.filter-select {
+    width: auto !important;
+    display: inline-block;
+    min-width: 200px;
+}

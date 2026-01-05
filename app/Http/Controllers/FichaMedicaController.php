@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class FichaMedicaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
 {
     $usuario = session('usuario');
     $tipoUsuario = session('tipo_usuario');
@@ -32,13 +32,38 @@ class FichaMedicaController extends Controller
     ->join('Hospital', 'Hospital.ID_Hospital', '=', 'Ficha_Medica.ID_Hospital')
     ->join('Unidad', 'Unidad.ID_Unidad', '=', 'Ficha_Medica.ID_Unidad');
 
+    // Filtrar por tipo de usuario
     if ($tipoUsuario === 'paciente') {
         $query->where('Ficha_Medica.CI_Paciente', $usuario->CI_Paciente);
+    } elseif ($tipoUsuario === 'medico') {
+        // Médico solo ve fichas de su hospital
+        $query->where('Ficha_Medica.ID_Hospital', $usuario->ID_Hospital);
+        
+        // Aplicar filtros adicionales para médicos
+        if ($request->has('fecha') && $request->fecha === 'hoy') {
+            $query->whereDate('Ficha_Medica.Fecha_Cita', now()->toDateString());
+        }
+        
+        if ($request->has('estado') && $request->estado !== 'todas') {
+            $query->where('Ficha_Medica.Estado_Cita', $request->estado);
+        }
+        
+        if ($request->has('unidad') && $request->unidad !== 'todas') {
+            $query->where('Ficha_Medica.ID_Unidad', $request->unidad);
+        }
     }
 
-    $fichas = $query->get();
+    $fichas = $query->orderBy('Ficha_Medica.Fecha_Cita', 'desc')
+                    ->orderBy('Ficha_Medica.Hora_Cita', 'asc')
+                    ->get();
 
-    return view('fichas.index', compact('fichas'));
+    // Obtener unidades del hospital del médico para el filtro
+    $unidades = collect(); // Colección vacía por defecto
+    if ($tipoUsuario === 'medico' && $usuario) {
+        $unidades = Unidad::where('ID_Hospital', $usuario->ID_Hospital)->get();
+    }
+
+    return view('fichas.index', compact('fichas', 'unidades'));
 }
 
     public function create()

@@ -1112,3 +1112,23 @@ table tbody tr:hover {
     opacity: 1;
 }
 
+/* Filtros de fichas médicas - Modo Oscuro */
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-divider {
+    border-left: 2px solid #4b5563;
+    height: 30px;
+    margin: 0 5px;
+}
+
+.filter-select {
+    width: auto !important;
+    display: inline-block;
+    min-width: 200px;
+}
