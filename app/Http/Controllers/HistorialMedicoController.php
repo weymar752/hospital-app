@@ -30,6 +30,20 @@ class HistorialMedicoController extends Controller
         return view('historial_medico.index', compact('historial'));
     }
 
+    // Mostrar formulario para crear historial médico
+    public function create(Request $request)
+    {
+        $fichaId = $request->query('ficha');
+        $ficha = null;
+        
+        if ($fichaId) {
+            $ficha = \App\Models\Ficha_Medica::with(['paciente', 'hospital', 'unidad', 'personalMedico'])
+                ->find($fichaId);
+        }
+        
+        return view('historial_medico.create', compact('ficha'));
+    }
+
     //  Guardar historial médico
     public function store(Request $request)
     {

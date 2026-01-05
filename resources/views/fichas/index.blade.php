@@ -54,6 +54,7 @@
                 <th style="width: 9em;">Estado</th>
                 @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
                 <!-- <th>Acciones</th> -->
+                <th>Atencion</th>
                 @endif
             </tr>
         </thead>
@@ -88,11 +89,9 @@
                 </td>
                 @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
                 <td>
-                    <form action="{{ route('fichas.destroy', $ficha->No_Ficha_Medica) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" onclick="return confirm('¿Eliminar ficha?')">Eliminar</button>
-                    </form>
+                    <a href="{{ route('historial_medico.create', ['ficha' => $ficha->No_Ficha_Medica]) }}" class="btn btn-primary">
+                        <i class="fas fa-notes-medical"></i> Atender
+                    </a>
                 </td>
                 @endif
             </tr>

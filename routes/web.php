@@ -84,6 +84,7 @@ Route::put('fichas/{id}/estado', [FichaMedicaController::class, 'updateEstado'])
 |--------------------------------------------------------------------------
 */
 Route::get('/historial_medico', [HistorialMedicoController::class, 'index'])->name('historial_medico.index');
+Route::get('/historial_medico/create', [HistorialMedicoController::class, 'create'])->name('historial_medico.create');
 Route::post('/historial_medico/store', [HistorialMedicoController::class, 'store'])->name('historial_medico.store');
 
 /*
