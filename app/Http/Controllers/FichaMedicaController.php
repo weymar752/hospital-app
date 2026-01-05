@@ -116,7 +116,7 @@ class FichaMedicaController extends Controller
             ];
         }
 
-        $redirect = redirect()->route('fichas-medicas.index')->with('success', 'Ficha médica creada correctamente.');
+        $redirect = redirect()->route('fichas.index')->with('success', 'Ficha médica creada correctamente.');
 
         if ($notification) {
             $redirect->with('notification', $notification);
@@ -137,11 +137,11 @@ class FichaMedicaController extends Controller
             $ficha->Estado_Cita = $request->Estado_Cita;
             $ficha->save();
 
-            return redirect()->route('fichas-medicas.index')
+            return redirect()->route('fichas.index')
                 ->with('success', 'Estado de la cita actualizado correctamente.');
 
         } catch (\Exception $e) {
-            return redirect()->route('fichas-medicas.index')
+            return redirect()->route('fichas.index')
                 ->with('error', 'Error al actualizar el estado: ' . $e->getMessage());
         }
     }
@@ -150,7 +150,7 @@ class FichaMedicaController extends Controller
     {
         Ficha_Medica::destroy($id);
 
-        return redirect()->route('fichas-medicas.index')
+        return redirect()->route('fichas.index')
                          ->with('success', 'Ficha médica eliminada.');
     }
 }

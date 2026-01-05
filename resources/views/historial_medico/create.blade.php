@@ -4,7 +4,7 @@
 <div class="form-container">
     <h2>Registrar Historial Médico</h2>
 
-    <form action="{{ route('historial-medico.store') }}" method="POST">
+    <form action="{{ route('historial_medico.store') }}" method="POST">
         @csrf
 
         {{-- Ficha médica --}}
