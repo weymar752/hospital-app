@@ -1138,3 +1138,135 @@ table tbody tr:hover {
     display: inline-block;
     min-width: 200px;
 }
+
+/* ========================================
+   RESPONSIVE - MÓVILES (MODO OSCURO)
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Ajustar navegación */
+    nav {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+    
+    nav h1 {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+    
+    .nav-links li {
+        margin: 0 8px;
+    }
+    
+    /* Main content responsive */
+    main {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    section {
+        padding: 15px;
+        margin: 15px 5px;
+    }
+    
+    /* Form container */
+    .form-container {
+        width: 95%;
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    .form-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    /* Tablas responsive con scroll horizontal */
+    .form-container table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    
+    table thead,
+    table tbody,
+    table th,
+    table td,
+    table tr {
+        display: table-cell;
+    }
+    
+    table th,
+    table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    
+    /* Botones en tablas */
+    table .btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Filtros responsive */
+    .filter-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 8px;
+    }
+    
+    .filter-divider {
+        display: none;
+    }
+    
+    .filter-select {
+        width: 100% !important;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para pantallas muy pequeñas */
+    nav h1 {
+        font-size: 1rem;
+    }
+    
+    .nav2 {
+        display: none !important;
+    }
+    
+    .form-container {
+        width: 98%;
+        padding: 10px;
+    }
+    
+    .form-container h2 {
+        font-size: 1.1rem;
+    }
+    
+    table th,
+    table td {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .social-icons a {
+        font-size: 18px;
+        margin: 0 5px;
+    }
+    
+    footer {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+}
