@@ -24,6 +24,30 @@ class PersonalMedicoSeeder extends Seeder
                 'ID_Unidad' => 1, // Consulta Externa General
                 'Contrasena' => ('admin123')
             ],
+            [
+                'Ci_Personal_Medico' => '8725121',
+                'Nombres_PM' => 'César Luis',
+                'Apellido_P_PM' => 'Dockweiler',
+                'Apellido_M_PM' => 'Suárez',
+                'Telefono' => '71234567',
+                'Email' => 'cesar.dockweiler@hospital.com',
+                'ID_Categoria' => 2, // Cardiólogo
+                'ID_Hospital' => 1, // Hospital Obrero N.º 1
+                'ID_Unidad' => 3, // Cardiología
+                'Contrasena' => ('Dockweiler8725')
+            ],
+            [
+                'Ci_Personal_Medico' => '2376541',
+                'Nombres_PM' => 'Marlene Monica',
+                'Apellido_P_PM' => 'Suntura',
+                'Apellido_M_PM' => 'Chura',
+                'Telefono' => '67189800',
+                'Email' => 'Marlene@gmail.com',
+                'ID_Categoria' => 3, // Pediatra
+                'ID_Hospital' => 1, // Hospital Obrero N.º 1
+                'ID_Unidad' => 2, // Medicina Interna
+                'Contrasena' => ('Marlene2376')
+            ],
             // Otros 15 personal médico
             [
                 'Ci_Personal_Medico' => '1234567',

@@ -20,8 +20,30 @@ class PacienteSeeder extends Seeder
                 'Fecha_Nacimiento' => '1998-09-06',
                 'Tipo_Sangre' => 'O+',
                 'Alergias' => 'Penicilina, Polvo',
-                'ID_Hospital' => 1, // Hospital Obrero N.º 1
+                'ID_Hospital' => 1, // Hospital Cotahuma
                 'Contrasena' => 'admin123'
+            ],
+            [
+                'CI_Paciente' => '8725120',
+                'Nombres' => 'César Luis',
+                'Apellido_P' => 'Dockweiler',
+                'Apellido_M' => 'Suárez',
+                'Fecha_Nacimiento' => '1968-09-06',
+                'Tipo_Sangre' => 'O+',
+                'Alergias' => 'Penicilina, Polvo, maní',
+                'ID_Hospital' => 1, // Hospital Cotahuma
+                'Contrasena' => 'Dockweiler8725'
+            ],
+            [
+                'CI_Paciente' => '2376540',
+                'Nombres' => 'Marlene Monica',
+                'Apellido_P' => 'Suntura',
+                'Apellido_M' => 'Chura',
+                'Fecha_Nacimiento' => '1989-09-06',
+                'Tipo_Sangre' => 'O+',
+                'Alergias' => 'Penicilina, Polvo, maní, mariscos',
+                'ID_Hospital' => 1, // Hospital Cotahuma
+                'Contrasena' => 'Marlene2376'
             ],
             // Otros 15 pacientes
             [

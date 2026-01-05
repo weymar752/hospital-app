@@ -52,6 +52,7 @@
         @if(session()->has('usuario'))
             @if(session('tipo_usuario') === 'medico')
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
                 <li><a href="{{ route('pacientes.index') }}"><i class="fa fa-users"></i> Pacientes</a></li>
                 <li><a href="{{ route('hospitales.index') }}"><i class="fas fa-hospital"></i> Hospitales</a></li>
                 <li><a href="{{ route('personal_medico.index') }}"><i class="fa fa-user-md"></i> Personal Médico</a></li>
