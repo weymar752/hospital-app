@@ -22,8 +22,8 @@ COPY . /var/www/html
 # Directorio de trabajo
 WORKDIR /var/www/html
 
-# Instala dependencias PHP
-RUN composer install --no-dev --optimize-autoloader
+# Instala dependencias PHP con más memoria
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
 # Copia configuración de Apache
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
