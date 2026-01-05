@@ -20,9 +20,8 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             PersonalMedicoSeeder::class,
             PacienteSeeder::class,           
-            HistorialMedicoSeeder::class,
             FichaMedicaSeeder::class,
-            
+            HistorialMedicoSeeder::class,
         ]);
     }
 }

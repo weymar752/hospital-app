@@ -75,7 +75,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-01-19',
                 'Fecha_Cita' => '2024-01-26',
                 'Hora_Cita' => '15:45:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Evaluación neurológica por mareos',
                 'ID_Unidad' => 5, // Neurología
                 'Ci_Personal_Medico' => '1122334', // Patricia Andrea - Neuróloga
@@ -110,7 +110,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-01-22',
                 'Fecha_Cita' => '2024-01-29',
                 'Hora_Cita' => '11:00:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Reacción alérgica a mariscos',
                 'ID_Unidad' => 7, // Alergología
                 'Ci_Personal_Medico' => '2233445', // Fernando Jose
@@ -145,7 +145,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-01-25',
                 'Fecha_Cita' => '2024-02-01',
                 'Hora_Cita' => '14:45:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Dolor abdominal y evaluación general',
                 'ID_Unidad' => 9, // Pediatría
                 'Ci_Personal_Medico' => '6789012', // Laura Sofia - Pediatra
@@ -191,7 +191,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-01-29',
                 'Fecha_Cita' => '2024-02-05',
                 'Hora_Cita' => '11:30:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Evaluación de capacidad pulmonar',
                 'ID_Unidad' => 10, // Neumología
                 'Ci_Personal_Medico' => '5678901', // Roberto Andres - Neumólogo
@@ -213,7 +213,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-01-31',
                 'Fecha_Cita' => '2024-02-07',
                 'Hora_Cita' => '16:45:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Seguimiento de tratamiento para asma',
                 'ID_Unidad' => 10, // Neumología
                 'Ci_Personal_Medico' => '3344556', // Gabriela Maria - Neumóloga
@@ -227,7 +227,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-01',
                 'Fecha_Cita' => '2024-02-08',
                 'Hora_Cita' => '08:00:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Control cardíaco post-tratamiento',
                 'ID_Unidad' => 3, // Cardiología
                 'Ci_Personal_Medico' => '9012345', // Jorge Luis - Cardiólogo
@@ -238,7 +238,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-02',
                 'Fecha_Cita' => '2024-02-09',
                 'Hora_Cita' => '10:30:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Reevaluación neurológica',
                 'ID_Unidad' => 4, // Neurología
                 'Ci_Personal_Medico' => '3456789', // Carlos Alberto - Neurólogo
@@ -251,7 +251,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-03',
                 'Fecha_Cita' => '2024-02-10',
                 'Hora_Cita' => '13:00:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Control médico general',
                 'ID_Unidad' => 1, // Consulta Externa General
                 'Ci_Personal_Medico' => '4567890', // Ana Patricia
@@ -264,7 +264,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-04',
                 'Fecha_Cita' => '2024-02-11',
                 'Hora_Cita' => '14:20:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Vacunación y control infantil',
                 'ID_Unidad' => 9, // Pediatría
                 'Ci_Personal_Medico' => '6789012', // Laura Sofia - Pediatra
@@ -277,7 +277,7 @@ class FichaMedicaSeeder extends Seeder
                 'Fecha_Creacion' => '2024-02-05',
                 'Fecha_Cita' => '2024-02-12',
                 'Hora_Cita' => '17:00:00',
-                'Estado_Cita' => 'Programada',
+                'Estado_Cita' => 'Completada',
                 'Motivo_Consulta' => 'Prueba de esfuerzo pulmonar',
                 'ID_Unidad' => 10, // Neumología
                 'Ci_Personal_Medico' => '5678901', // Roberto Andres - Neumólogo
