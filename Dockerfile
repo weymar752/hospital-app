@@ -7,10 +7,12 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     libfreetype6-dev \
     libpq-dev \
+    libzip-dev \
     zip \
     unzip \
+    git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_pgsql gd \
+    && docker-php-ext-install pdo pdo_pgsql gd zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Instala Composer
@@ -22,8 +24,9 @@ COPY . /var/www/html
 # Directorio de trabajo
 WORKDIR /var/www/html
 
-# Instala dependencias PHP con más memoria
-RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+# Instala dependencias PHP (sin scripts que puedan fallar)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-scripts \
+    && composer dump-autoload --optimize
 
 # Copia configuración de Apache
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
