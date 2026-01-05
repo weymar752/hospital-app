@@ -43,16 +43,10 @@ RUN chown -R www-data:www-data /var/www/html \
 EXPOSE 80
 
 # --- INICIO DE LA APLICACIÓN ---
-# Usamos 'sh -c' para encadenar comandos.
-# 1. Crea el enlace simbólico del storage
-# 2. Limpia cachés
-# 3. Ejecuta migraciones
-# 4. Ejecuta seeders (solo si la BD está vacía)
-# 5. Inicia Apache
+# Solo limpia cachés e inicia Apache
+# Las migraciones y seeders deben ejecutarse manualmente
 CMD sh -c "php artisan storage:link && \
            php artisan config:clear && \
            php artisan route:clear && \
            php artisan view:clear && \
-           php artisan migrate --force && \
-           php artisan db:seed --force && \
            apache2-foreground"
