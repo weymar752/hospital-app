@@ -3,8 +3,11 @@
 @section('content')
 <div class="form-container">
     <h2>Listado de Hospitales</h2>
+    @if(session()->has('usuario'))
+    @if(session('tipo_usuario') === 'medico')
     <a href="{{ route('hospitales.create') }}" class="btn btn-primary mb-3">Nuevo Hospital</a>
-
+    @endif
+    @endif
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif

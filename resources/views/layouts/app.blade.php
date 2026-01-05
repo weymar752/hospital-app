@@ -110,8 +110,8 @@
             <h1>FICHAS MEDICAS</h1>
     
             <div class="social-icons">
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/ciudad_humana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/CiudadHumanaBo" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
         </nav>
@@ -157,8 +157,8 @@
             <h1>FICHAS MEDICAS</h1>
     
             <div class="social-icons">
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/ciudad_humana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/CiudadHumanaBo" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
         </nav>
@@ -212,9 +212,9 @@
         <h4>Síguenos</h4>
         <div>
             <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/ciudad_humana/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.youtube.com/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/CiudadHumanaBo" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@Innovaci%C3%B3n.Humana" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     <div style="margin-top: 12px; color: #c6d4df;">

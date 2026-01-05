@@ -63,6 +63,7 @@
                 <!-- Menú para pacientes -->
                 <li><a href="{{ route('home') }}"><i class="fas fa-home"></i> Inicio</a></li>
                 <li><a href="{{ route('perfil') }}"><i class="fa fa-user"></i> Mi Perfil</a></li>
+                <li><a href="{{ route('historial_medico.index') }}"><i class="fa fa-notes-medical"></i> Mi Historial Médico</a></li>
                 <li><a href="{{ route('fichas.index') }}"><i class="fa fa-calendar"></i> Mis Citas</a></li>
                 <li><a href="{{ route('fichas.create') }}"><i class="fa fa-file-medical"></i> Nueva Ficha Médica</a></li>
                 <li><a href="https://ciudadhumana.com/"><i class="fas fa-globe"></i> Pagina Oficial</a></li>
@@ -103,8 +104,8 @@
             <h1>FICHAS MEDICAS</h1>
     
             <div class="social-icons">
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/ciudad_humana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/CiudadHumanaBo" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
         </nav>
@@ -148,8 +149,8 @@
             <h1>FICHAS MEDICAS</h1>
     
             <div class="social-icons">
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/ciudad_humana/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/CiudadHumanaBo" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank"><i class="fab fa-facebook"></i></a>
             </div>
         </nav>
@@ -359,17 +360,17 @@
     <div>
         <h4>Contacto</h4>
         <ul style="list-style: none; padding: 0; color: #c6d4df;">
-            <li>Email: weymar752@gmail.com</li>
-            <li>Tel: +591 65623943</li>
+            <li>Email: info@ciudadhumana.com</li>
+            <li>Dirección: Sanchez Lima 2206, Zona Sopocachi.</li>
         </ul>
     </div>
     <div>
         <h4>Síguenos</h4>
         <div>
             <a href="https://www.facebook.com/p/Ciudad-Humana-61561362172669/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/ciudad_humana/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.youtube.com/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/innovacionhumana2026/" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/CiudadHumanaBo" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.youtube.com/@Innovaci%C3%B3n.Humana" target="_blank" style="color: #c6d4df; margin: 0 10px;"><i class="fab fa-youtube"></i></a>
         </div>
     </div>
     <div style="margin-top: 12px; color: #c6d4df;">

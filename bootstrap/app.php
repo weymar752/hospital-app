@@ -11,7 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Registrar middlewares personalizados
+        $middleware->alias([
+            'auth.custom' => \App\Http\Middleware\CheckAuth::class,
+            'medico' => \App\Http\Middleware\CheckMedico::class,
+            'paciente' => \App\Http\Middleware\CheckPaciente::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -53,43 +53,66 @@ Route::match(['get', 'post'], '/logout', [AuthController::class, 'logout'])->nam
 | Páginas Principales por Rol
 |--------------------------------------------------------------------------
 */
-Route::get('/pagina_medicos/inicio', function () {
-    return view('pagina_medicos.home');
-})->name('pagina_medicos.home');
+Route::middleware(['medico'])->group(function () {
+    Route::get('/pagina_medicos/inicio', function () {
+        return view('pagina_medicos.home');
+    })->name('pagina_medicos.home');
+});
 
-Route::get('/pagina_pacientes/inicio', function () {
-    return view('pagina_pacientes.home');
-})->name('pagina_pacientes.home');
+Route::middleware(['paciente'])->group(function () {
+    Route::get('/pagina_pacientes/inicio', function () {
+        return view('pagina_pacientes.home');
+    })->name('pagina_pacientes.home');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Recursos CRUD
 |--------------------------------------------------------------------------
 */
+// Hospitales - público
 Route::resource('hospitales', HospitalController::class);
-Route::resource('pacientes', PacienteController::class);
-Route::resource('personal_medico', PersonalMedicoController::class);
-Route::resource('fichas', FichaMedicaController::class);
+
+// Pacientes - solo para médicos
+Route::middleware(['medico'])->group(function () {
+    Route::resource('pacientes', PacienteController::class);
+});
+
+// Personal Médico - solo para médicos
+Route::middleware(['medico'])->group(function () {
+    Route::resource('personal_medico', PersonalMedicoController::class);
+});
+
+// Fichas Médicas - requiere autenticación
+Route::middleware(['auth.custom'])->group(function () {
+    Route::resource('fichas', FichaMedicaController::class);
+});
 
 /*
 |--------------------------------------------------------------------------
 | Fichas Médicas - Rutas Adicionales
 |--------------------------------------------------------------------------
 */
-Route::put('fichas/{id}/estado', [FichaMedicaController::class, 'updateEstado'])->name('fichas.updateEstado');
+Route::middleware(['auth.custom'])->group(function () {
+    Route::put('fichas/{id}/estado', [FichaMedicaController::class, 'updateEstado'])->name('fichas.updateEstado');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Historial Médico
 |--------------------------------------------------------------------------
 */
-Route::get('/historial_medico', [HistorialMedicoController::class, 'index'])->name('historial_medico.index');
-Route::get('/historial_medico/create', [HistorialMedicoController::class, 'create'])->name('historial_medico.create');
-Route::post('/historial_medico/store', [HistorialMedicoController::class, 'store'])->name('historial_medico.store');
+Route::middleware(['auth.custom'])->group(function () {
+    Route::get('/historial_medico', [HistorialMedicoController::class, 'index'])->name('historial_medico.index');
+    Route::get('/historial_medico/create', [HistorialMedicoController::class, 'create'])->name('historial_medico.create');
+    Route::post('/historial_medico/store', [HistorialMedicoController::class, 'store'])->name('historial_medico.store');
+});
 
 /*
 |--------------------------------------------------------------------------
 | Perfil de Usuario
 |--------------------------------------------------------------------------
 */
-Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
+Route::middleware(['auth.custom'])->group(function () {
+    Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil');
+});
