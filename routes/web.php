@@ -83,7 +83,8 @@ Route::put('fichas/{id}/estado', [FichaMedicaController::class, 'updateEstado'])
 | Historial Médico
 |--------------------------------------------------------------------------
 */
-Route::get('/historial_medico/{ciPaciente}', [HistorialMedicoController::class, 'historialPaciente'])->name('historial_medico.index');
+Route::get('/historial_medico', [HistorialMedicoController::class, 'index'])->name('historial_medico.index');
+Route::get('/historial_medico/{ciPaciente}', [HistorialMedicoController::class, 'historialPaciente'])->name('historial_medico.show')->middleware('auth:paciente');
 Route::post('/historial_medico/store', [HistorialMedicoController::class, 'store'])->name('historial_medico.store');
 
 /*
