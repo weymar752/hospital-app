@@ -415,10 +415,7 @@ section {
 .form-container input[type="text"],
 .form-container input[type="email"],
 .form-container input[type="date"],
-.form-container select{
-    color: white;
-}
-    
+.form-container select,
 .form-container textarea {
     width: 100%;
     padding: 10px;
@@ -453,6 +450,12 @@ section {
 .form-container textarea, 
 .form-container select {
     color: #e0e0e0;
+}
+
+/* Ícono del calendario en inputs de fecha - modo oscuro */
+.form-container input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
 }
 
 .form-container input::placeholder,
