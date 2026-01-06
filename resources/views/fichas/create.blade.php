@@ -156,12 +156,69 @@
     </form>
 </div>
 
+<style>
+.hora-ocupada {
+    color: #dc2626 !important;
+    font-weight: bold;
+}
+.hora-ocupada::after {
+    content: " (Ocupada)";
+    font-size: 0.85em;
+}
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const fechaCitaInput = document.querySelector('input[name="Fecha_Cita"]');
     const horaCitaSelect = document.querySelector('select[name="Hora_Cita"]');
+    const medicoSelect = document.querySelector('select[name="Ci_Personal_Medico"]');
+    const unidadSelect = document.querySelector('select[name="ID_Unidad"]');
     const form = document.querySelector('form');
 
+    // Función para actualizar horas ocupadas
+    async function actualizarHorasOcupadas() {
+        const fecha = fechaCitaInput.value;
+        const medico = medicoSelect.value;
+        const unidad = unidadSelect.value;
+
+        // Limpiar estilos previos
+        const opciones = horaCitaSelect.querySelectorAll('option');
+        opciones.forEach(opt => {
+            opt.classList.remove('hora-ocupada');
+            opt.disabled = false;
+            if (opt.value !== '') {
+                const textoOriginal = opt.textContent.replace(' (Ocupada)', '');
+                opt.textContent = textoOriginal;
+            }
+        });
+
+        if (!fecha || !medico || !unidad) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/fichas/horas-ocupadas?fecha=${fecha}&medico=${medico}&unidad=${unidad}`);
+            const horasOcupadas = await response.json();
+
+            // Marcar horas ocupadas en rojo
+            horasOcupadas.forEach(hora => {
+                const opcion = horaCitaSelect.querySelector(`option[value="${hora}"]`);
+                if (opcion) {
+                    opcion.classList.add('hora-ocupada');
+                    opcion.disabled = true;
+                }
+            });
+        } catch (error) {
+            console.error('Error al obtener horas ocupadas:', error);
+        }
+    }
+
+    // Escuchar cambios en fecha, médico y unidad
+    fechaCitaInput.addEventListener('change', actualizarHorasOcupadas);
+    medicoSelect.addEventListener('change', actualizarHorasOcupadas);
+    unidadSelect.addEventListener('change', actualizarHorasOcupadas);
+
+    // Validación al enviar el formulario
     form.addEventListener('submit', function(e) {
         const fechaCita = fechaCitaInput.value;
         const horaCita = horaCitaSelect.value;
@@ -174,6 +231,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (fechaHoraCita < ahora) {
                 e.preventDefault();
                 alert('No puedes programar una cita en fecha/hora pasada.');
+                return false;
+            }
+
+            // Validar que no sea una hora ocupada
+            const opcionSeleccionada = horaCitaSelect.querySelector(`option[value="${horaCita}"]`);
+            if (opcionSeleccionada && opcionSeleccionada.classList.contains('hora-ocupada')) {
+                e.preventDefault();
+                alert('Esta hora ya está ocupada. Por favor selecciona otra hora.');
                 return false;
             }
         }
