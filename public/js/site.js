@@ -36,11 +36,12 @@
 
         // Cerrar sidebar al hacer clic fuera de él
         document.addEventListener('click', function(event) {
-            const menuToggle = document.querySelector('.menu-toggle');
+            // Verificar si el clic fue en cualquier botón de menú
+            const clickedMenuToggle = event.target.closest('.menu-toggle');
             
-            // Si el sidebar está activo y el clic no fue en el sidebar ni en el botón de menú
+            // Si el sidebar está activo y el clic no fue en el sidebar ni en ningún botón de menú
             if (sidebar && sidebar.classList.contains('active')) {
-                if (!sidebar.contains(event.target) && event.target !== menuToggle) {
+                if (!sidebar.contains(event.target) && !clickedMenuToggle) {
                     sidebar.classList.remove('active');
                     if (mainContent) mainContent.classList.remove('active');
                     if (overlay) overlay.classList.remove('active');
