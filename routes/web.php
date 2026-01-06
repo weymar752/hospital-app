@@ -95,7 +95,6 @@ Route::middleware(['auth.custom'])->group(function () {
 */
 Route::middleware(['auth.custom'])->group(function () {
     Route::put('fichas/{id}/estado', [FichaMedicaController::class, 'updateEstado'])->name('fichas.updateEstado');
-    Route::get('fichas/horas-ocupadas', [FichaMedicaController::class, 'getHorasOcupadas'])->name('fichas.horasOcupadas');
 });
 
 /*

@@ -88,26 +88,6 @@ class FichaMedicaController extends Controller
         return view('fichas.create', compact('pacientes', 'medicos', 'hospitales', 'unidades'));
     }
 
-    public function getHorasOcupadas(Request $request)
-    {
-        $fecha = $request->query('fecha');
-        $medico = $request->query('medico');
-        $unidad = $request->query('unidad');
-
-        if (!$fecha || !$medico || !$unidad) {
-            return response()->json([]);
-        }
-
-        $horasOcupadas = Ficha_Medica::where('Fecha_Cita', $fecha)
-            ->where('Ci_Personal_Medico', $medico)
-            ->where('ID_Unidad', $unidad)
-            ->where('Estado_Cita', '!=', 'Cancelada')
-            ->pluck('Hora_Cita')
-            ->toArray();
-
-        return response()->json($horasOcupadas);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
