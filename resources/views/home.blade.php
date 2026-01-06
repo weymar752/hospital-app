@@ -143,7 +143,7 @@
 
     <div id="floating-menu">
         
-        <div class="main-content" id="mainContent">
+        <div class="main-content">
             <nav>
 
             <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
