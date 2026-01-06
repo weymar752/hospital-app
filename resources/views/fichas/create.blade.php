@@ -5,6 +5,22 @@
 <div class="form-container">
     <h2>Crear Ficha Médica</h2>
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('fichas.store') }}" method="POST">
         @csrf
 
@@ -77,7 +93,7 @@
         <input type="date" name="Fecha_Cita" class="form-control" min="{{ date('Y-m-d') }}" required>
 
         <label>Hora Cita</label>
-        <input type="time" name="Hora_Cita" class="form-control" required>
+        <input type="time" name="Hora_Cita" class="form-control" min="08:00" max="18:00" step="900" required>
 
         @if(session()->has('usuario') && session('tipo_usuario') === 'medico')
         <label>Estado Cita</label>
@@ -108,6 +124,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const horaCita = horaCitaInput.value;
         
         if (fechaCita && horaCita) {
+            // Validar horario permitido (8:00 AM a 6:00 PM)
+            const [hora, minuto] = horaCita.split(':').map(Number);
+            if (hora < 8 || hora > 18 || (hora === 18 && minuto > 0)) {
+                e.preventDefault();
+                alert('El horario de atención es de 8:00 AM a 6:00 PM');
+                return false;
+            }
+            
             // Validar que no sea en el pasado
             const ahora = new Date();
             const fechaHoraCita = new Date(fechaCita + 'T' + horaCita);

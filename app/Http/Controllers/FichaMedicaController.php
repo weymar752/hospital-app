@@ -101,17 +101,38 @@ class FichaMedicaController extends Controller
             'ID_Hospital' => 'required'
         ]);
 
-        // Verificar si ya existe una ficha en la misma fecha y hora para el mismo médico
+        // Validar horario permitido (8:00 AM a 6:00 PM)
+        $hora = explode(':', $request->Hora_Cita);
+        if (count($hora) >= 2) {
+            $horaNum = (int)$hora[0];
+            $minutoNum = (int)$hora[1];
+            if ($horaNum < 8 || $horaNum > 18 || ($horaNum === 18 && $minutoNum > 0)) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'El horario de atención es de 8:00 AM a 6:00 PM.');
+            }
+        }
+
+        // Validar que la fecha y hora no sea en el pasado
+        $fechaHoraCita = \Carbon\Carbon::parse($request->Fecha_Cita . ' ' . $request->Hora_Cita);
+        if ($fechaHoraCita->isPast()) {
+            return back()
+                ->withInput()
+                ->with('error', 'No puedes programar una cita en fecha/hora pasada.');
+        }
+
+        // Verificar si ya existe una ficha en la misma fecha, hora, unidad y médico
         $fichaExistente = Ficha_Medica::where('Fecha_Cita', $request->Fecha_Cita)
             ->where('Hora_Cita', $request->Hora_Cita)
             ->where('Ci_Personal_Medico', $request->Ci_Personal_Medico)
             ->where('ID_Unidad', $request->ID_Unidad)
+            ->where('Estado_Cita', '!=', 'Cancelada')
             ->first();
 
         if ($fichaExistente) {
             return back()
                 ->withInput()
-                ->with('error', 'Ya existe una cita programada para este médico en la misma fecha y hora.');
+                ->with('error', 'Ya existe una cita programada para este médico en la misma fecha, hora y unidad.');
         }
 
         // Crear la ficha médica con fecha de creación automática
