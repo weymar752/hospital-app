@@ -158,12 +158,9 @@
 
 <style>
 .hora-ocupada {
-    color: #dc2626 !important;
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
     font-weight: bold;
-}
-.hora-ocupada::after {
-    content: " (Ocupada)";
-    font-size: 0.85em;
 }
 </style>
 
@@ -187,8 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
             opt.classList.remove('hora-ocupada');
             opt.disabled = false;
             if (opt.value !== '') {
-                const textoOriginal = opt.textContent.replace(' (Ocupada)', '');
-                opt.textContent = textoOriginal;
+                // Restaurar texto original sin emoji
+                opt.textContent = opt.textContent.replace('🚫 ', '').replace(' - OCUPADA', '');
             }
         });
 
@@ -206,6 +203,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (opcion) {
                     opcion.classList.add('hora-ocupada');
                     opcion.disabled = true;
+                    // Agregar indicador visual en el texto
+                    const textoActual = opcion.textContent;
+                    opcion.textContent = '🚫 ' + textoActual + ' - OCUPADA';
                 }
             });
         } catch (error) {
