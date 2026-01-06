@@ -53,13 +53,19 @@
         // Script para manejar la visibilidad de la barra lateral al hacer scroll
     let lastScrollTopSidebar = 0;
     window.addEventListener("scroll", function() {
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const overlay = document.getElementById('sidebarOverlay');
+        
         let scrollTop = window.scrollY;
         if (scrollTop > lastScrollTopSidebar) {
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('mainContent').classList.remove('active');
+            if (sidebar) sidebar.classList.remove('active');
+            if (mainContent) mainContent.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
         } else {
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('mainContent').classList.remove('active');
+            if (sidebar) sidebar.classList.remove('active');
+            if (mainContent) mainContent.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
         }
         lastScrollTopSidebar = scrollTop;
     });
