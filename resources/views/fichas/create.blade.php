@@ -5,10 +5,7 @@
 <div class="form-container">
     <h2>Crear Ficha Médica</h2>
     
-    <!-- Debug: Mostrar hora del servidor -->
-    <div style="background: #e3f2fd; padding: 8px; border-radius: 5px; margin-bottom: 15px; font-size: 13px; color: #1976d2;">
-        <i class="fas fa-clock"></i> <strong>Hora actual del servidor:</strong> {{ now()->format('d/m/Y H:i:s') }} ({{ config('app.timezone') }})
-    </div>
+
 
     @if(session('error'))
         <div class="alert alert-danger">

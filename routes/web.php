@@ -73,9 +73,17 @@ Route::middleware(['paciente'])->group(function () {
 // Hospitales - público
 Route::resource('hospitales', HospitalController::class);
 
-// Pacientes - solo para médicos
+// Registro de Pacientes - PÚBLICO (permitir a cualquiera registrarse)
+Route::get('pacientes/create', [PacienteController::class, 'create'])->name('pacientes.create');
+Route::post('pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
+
+// Resto de rutas de Pacientes - solo para médicos autenticados
 Route::middleware(['medico'])->group(function () {
-    Route::resource('pacientes', PacienteController::class);
+    Route::get('pacientes', [PacienteController::class, 'index'])->name('pacientes.index');
+    Route::get('pacientes/{id}', [PacienteController::class, 'show'])->name('pacientes.show');
+    Route::get('pacientes/{id}/edit', [PacienteController::class, 'edit'])->name('pacientes.edit');
+    Route::put('pacientes/{id}', [PacienteController::class, 'update'])->name('pacientes.update');
+    Route::delete('pacientes/{id}', [PacienteController::class, 'destroy'])->name('pacientes.destroy');
 });
 
 // Personal Médico - solo para médicos
