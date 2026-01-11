@@ -4,6 +4,11 @@
 
 <div class="form-container">
     <h2>Crear Ficha Médica</h2>
+    
+    <!-- Debug: Mostrar hora del servidor -->
+    <div style="background: #e3f2fd; padding: 8px; border-radius: 5px; margin-bottom: 15px; font-size: 13px; color: #1976d2;">
+        <i class="fas fa-clock"></i> <strong>Hora actual del servidor:</strong> {{ now()->format('d/m/Y H:i:s') }} ({{ config('app.timezone') }})
+    </div>
 
     @if(session('error'))
         <div class="alert alert-danger">
@@ -162,16 +167,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const horaCitaSelect = document.querySelector('select[name="Hora_Cita"]');
     const form = document.querySelector('form');
 
+    // Debug: Mostrar hora del navegador
+    const horaLocal = new Date();
+    console.log('🕐 Hora local del navegador:', horaLocal.toLocaleString());
+    console.log('🕐 Hora (24h):', horaLocal.getHours() + ':' + String(horaLocal.getMinutes()).padStart(2, '0'));
+
     // Función para actualizar las horas disponibles
     function actualizarHorasDisponibles() {
         const fechaSeleccionada = fechaCitaInput.value;
         const hoy = new Date();
         const fechaHoy = hoy.toISOString().split('T')[0];
         
+        console.log('📅 Fecha seleccionada:', fechaSeleccionada);
+        console.log('📅 Fecha hoy:', fechaHoy);
+        
         // Si la fecha seleccionada es hoy, deshabilitar horas pasadas
         if (fechaSeleccionada === fechaHoy) {
             const horaActual = hoy.getHours();
             const minutosActuales = hoy.getMinutes();
+            
+            console.log('⏰ Hora actual para comparar:', horaActual + ':' + minutosActuales);
             
             // Recorrer todas las opciones de hora
             Array.from(horaCitaSelect.options).forEach(option => {
@@ -224,11 +239,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const ahora = new Date();
             const fechaHoraCita = new Date(fechaCita + 'T' + horaCita);
             
+            console.log('📋 Validando cita:');
+            console.log('   - Fecha/Hora cita:', fechaHoraCita.toLocaleString());
+            console.log('   - Ahora:', ahora.toLocaleString());
+            console.log('   - ¿Es válida?:', fechaHoraCita > ahora);
+            
             // Validar que no sea en el pasado (incluyendo minutos)
             if (fechaHoraCita <= ahora) {
                 e.preventDefault();
-                alert('No puedes programar una cita en una fecha/hora que ya pasó.\n\nPor favor selecciona una hora posterior a las ' + 
-                      ahora.getHours() + ':' + String(ahora.getMinutes()).padStart(2, '0'));
+                const horaActualFormateada = String(ahora.getHours()).padStart(2, '0') + ':' + String(ahora.getMinutes()).padStart(2, '0');
+                alert('No puedes programar una cita en una fecha/hora que ya pasó.\n\n' + 
+                      '⏰ Hora actual: ' + horaActualFormateada + '\n' +
+                      'Por favor selecciona una hora posterior.');
                 return false;
             }
         }
