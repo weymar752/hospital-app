@@ -15,29 +15,29 @@ class HospitalSeeder extends Seeder
     {
         $hospitales = [
             [
-                'Nombre_Hospital' => 'Hospital Municipal Cotahuma',
-                'Nivel_Hospital' => 'Nivel II',
-                'Direccion_Hospital' => 'Av. Víctor Agustín Ugarte esquina Jaime Zudañez, La Paz, Bolivia'
+                'Nombre_Hospital' => 'Hospital de Clínicas',
+                'Nivel_Hospital' => 'Nivel III',
+                'Direccion_Hospital' => 'Av. Saavedra N° 2246, Zona Miraflores, La Paz, Bolivia'
             ],
             [
-                'Nombre_Hospital' => 'Hospital Municipal La Portada',
+                'Nombre_Hospital' => 'Caja Nacional de Salud - Manco Kapac',
                 'Nivel_Hospital' => 'Nivel II',
-                'Direccion_Hospital' => 'Av. La Florida, Zona La Portada, La Paz, Bolivia'
+                'Direccion_Hospital' => 'Av. Manco Kapac, Zona Miraflores, La Paz, Bolivia'
             ],
             [
-                'Nombre_Hospital' => 'Hospital Municipal La Merced',
-                'Nivel_Hospital' => 'Nivel II',
-                'Direccion_Hospital' => 'Zona La Merced, Calle Villa Aspiazu, La Paz, Bolivia'
+                'Nombre_Hospital' => 'Posta Médica Villa Copacabana',
+                'Nivel_Hospital' => 'Nivel I',
+                'Direccion_Hospital' => 'Zona Villa Copacabana, Distrito 3, La Paz, Bolivia'
             ],
             [
-                'Nombre_Hospital' => 'Hospital Municipal Los Pinos',
-                'Nivel_Hospital' => 'Nivel II',
-                'Direccion_Hospital' => 'Zona Los Pinos, Calle 25 s/n (entre Muñoz Reyes y José Aguirre Acha), La Paz, Bolivia'
+                'Nombre_Hospital' => 'Posta Médica Villa San Antonio',
+                'Nivel_Hospital' => 'Nivel I',
+                'Direccion_Hospital' => 'Zona Villa San Antonio, Distrito 6, La Paz, Bolivia'
             ],
             [
-                'Nombre_Hospital' => 'Hospital Municipal La Paz',
+                'Nombre_Hospital' => 'Hospital Universitario Nuestra Señora de La Paz',
                 'Nivel_Hospital' => 'Nivel II',
-                'Direccion_Hospital' => 'Zona 14 de Septiembre, Calle Nataniel Aguirre, frente a Plaza Garita de Lima, La Paz, Bolivia'
+                'Direccion_Hospital' => 'Zona Miraflores, La Paz, Bolivia'
             ]
         ];
 
