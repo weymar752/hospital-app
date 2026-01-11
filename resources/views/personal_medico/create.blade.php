@@ -79,7 +79,7 @@
 
         <br>
 
-        <button class="bg-blue-600 text-white px-4 py-2 rounded">Registrar</button>
+        <center><button class="btn btn-primary">Registrar</button></center>
     </form>
 
 </div>

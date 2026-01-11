@@ -104,7 +104,7 @@
             </div>
         </div>
 
-        <button class="btn btn-success mt-3">Guardar</button>
+        <center><button class="btn btn-primary">Guardar</button></center>
     </form>
 </div>
 @endsection

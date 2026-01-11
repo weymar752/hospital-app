@@ -67,7 +67,7 @@
                       placeholder="Observaciones adicionales, recomendaciones..."></textarea>
 
             <div class="form-actions mt-3">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Guardar Historial Médico
                 </button>
                 <a href="{{ route('fichas.index') }}" class="btn btn-secondary">

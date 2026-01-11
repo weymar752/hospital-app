@@ -21,7 +21,7 @@
             <input type="text" name="Direccion_Hospital" class="form-control" required>
         </div>
 
-        <button class="btn btn-success">Guardar</button>
+        <center><button class="btn btn-primary">Guardar</button></center>
     </form>
 </div>
 @endsection

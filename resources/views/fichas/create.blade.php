@@ -152,7 +152,7 @@
         <label>Motivo Consulta</label>
         <textarea name="Motivo_Consulta" class="form-control" required></textarea>
 
-        <button type="submit" class="btn btn-success mt-3">Guardar</button>
+        <center><button type="submit" class="btn btn-primary">Guardar</button></center>
     </form>
 </div>
 
