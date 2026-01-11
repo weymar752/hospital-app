@@ -115,10 +115,13 @@ class FichaMedicaController extends Controller
 
         // Validar que la fecha y hora no sea en el pasado
         $fechaHoraCita = \Carbon\Carbon::parse($request->Fecha_Cita . ' ' . $request->Hora_Cita);
-        if ($fechaHoraCita->isPast()) {
+        $ahora = \Carbon\Carbon::now();
+        
+        // Comparar fecha y hora exacta (no solo día)
+        if ($fechaHoraCita->lte($ahora)) {
             return back()
                 ->withInput()
-                ->with('error', 'No puedes programar una cita en fecha/hora pasada.');
+                ->with('error', 'No puedes programar una cita en una fecha/hora que ya pasó. Por favor selecciona una hora posterior a las ' . $ahora->format('H:i'));
         }
 
         // Verificar si ya existe una ficha en la misma fecha, hora, unidad y médico

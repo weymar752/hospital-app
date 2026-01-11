@@ -162,18 +162,73 @@ document.addEventListener('DOMContentLoaded', function() {
     const horaCitaSelect = document.querySelector('select[name="Hora_Cita"]');
     const form = document.querySelector('form');
 
+    // Función para actualizar las horas disponibles
+    function actualizarHorasDisponibles() {
+        const fechaSeleccionada = fechaCitaInput.value;
+        const hoy = new Date();
+        const fechaHoy = hoy.toISOString().split('T')[0];
+        
+        // Si la fecha seleccionada es hoy, deshabilitar horas pasadas
+        if (fechaSeleccionada === fechaHoy) {
+            const horaActual = hoy.getHours();
+            const minutosActuales = hoy.getMinutes();
+            
+            // Recorrer todas las opciones de hora
+            Array.from(horaCitaSelect.options).forEach(option => {
+                if (option.value) {
+                    const [hora, minutos] = option.value.split(':').map(Number);
+                    
+                    // Deshabilitar si la hora ya pasó o es la hora actual pero los minutos ya pasaron
+                    if (hora < horaActual || (hora === horaActual && minutos <= minutosActuales)) {
+                        option.disabled = true;
+                        option.style.color = '#999';
+                    } else {
+                        option.disabled = false;
+                        option.style.color = '';
+                    }
+                }
+            });
+            
+            // Si la hora seleccionada está deshabilitada, limpiar selección
+            if (horaCitaSelect.value) {
+                const [horaSeleccionada, minutosSeleccionados] = horaCitaSelect.value.split(':').map(Number);
+                if (horaSeleccionada < horaActual || (horaSeleccionada === horaActual && minutosSeleccionados <= minutosActuales)) {
+                    horaCitaSelect.value = '';
+                }
+            }
+        } else {
+            // Si no es hoy, habilitar todas las horas
+            Array.from(horaCitaSelect.options).forEach(option => {
+                if (option.value) {
+                    option.disabled = false;
+                    option.style.color = '';
+                }
+            });
+        }
+    }
+
+    // Actualizar horas cuando cambie la fecha
+    fechaCitaInput.addEventListener('change', actualizarHorasDisponibles);
+    
+    // Actualizar horas al cargar la página si hay una fecha seleccionada
+    if (fechaCitaInput.value) {
+        actualizarHorasDisponibles();
+    }
+
+    // Validación al enviar el formulario
     form.addEventListener('submit', function(e) {
         const fechaCita = fechaCitaInput.value;
         const horaCita = horaCitaSelect.value;
         
         if (fechaCita && horaCita) {
-            // Validar que no sea en el pasado
             const ahora = new Date();
             const fechaHoraCita = new Date(fechaCita + 'T' + horaCita);
             
-            if (fechaHoraCita < ahora) {
+            // Validar que no sea en el pasado (incluyendo minutos)
+            if (fechaHoraCita <= ahora) {
                 e.preventDefault();
-                alert('No puedes programar una cita en fecha/hora pasada.');
+                alert('No puedes programar una cita en una fecha/hora que ya pasó.\n\nPor favor selecciona una hora posterior a las ' + 
+                      ahora.getHours() + ':' + String(ahora.getMinutes()).padStart(2, '0'));
                 return false;
             }
         }

@@ -285,5 +285,110 @@
         </div>
     </div>
 
-
+    <script>
+        // ========================================
+        // PROTECCIÓN CONTRA MANIPULACIÓN MALICIOSA
+        // ========================================
+        
+        (function() {
+            'use strict';
+            
+            // Proteger inmediatamente al cargar
+            const protectClipboard = function() {
+                const passwordField = document.getElementById('contrasena');
+                const ciField = document.getElementById('ci');
+                
+                if (passwordField) {
+                    // Remover TODOS los listeners previos clonando el elemento
+                    const newPasswordField = passwordField.cloneNode(true);
+                    passwordField.parentNode.replaceChild(newPasswordField, passwordField);
+                    
+                    // Proteger eventos de clipboard
+                    ['copy', 'cut', 'paste'].forEach(function(eventType) {
+                        newPasswordField.addEventListener(eventType, function(e) {
+                            // Permitir comportamiento natural del navegador
+                            e.stopImmediatePropagation();
+                        }, {capture: true, passive: false});
+                    });
+                }
+                
+                if (ciField) {
+                    const newCiField = ciField.cloneNode(true);
+                    ciField.parentNode.replaceChild(newCiField, ciField);
+                }
+            };
+            
+            // Ejecutar inmediatamente
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', protectClipboard);
+            } else {
+                protectClipboard();
+            }
+            
+            // Bloquear inyección de scripts externos
+            const originalAppendChild = Node.prototype.appendChild;
+            const originalInsertBefore = Node.prototype.insertBefore;
+            
+            Node.prototype.appendChild = function(child) {
+                if (child.tagName === 'SCRIPT') {
+                    const content = child.textContent || child.innerText || '';
+                    if (content.includes('TikTok') || 
+                        content.includes('Selenium') || 
+                        content.includes('OpenQA') ||
+                        content.includes('using System')) {
+                        console.warn('⚠️ Script malicioso bloqueado');
+                        return child;
+                    }
+                }
+                return originalAppendChild.call(this, child);
+            };
+            
+            Node.prototype.insertBefore = function(newNode, referenceNode) {
+                if (newNode.tagName === 'SCRIPT') {
+                    const content = newNode.textContent || newNode.innerText || '';
+                    if (content.includes('TikTok') || 
+                        content.includes('Selenium') || 
+                        content.includes('OpenQA') ||
+                        content.includes('using System')) {
+                        console.warn('⚠️ Script malicioso bloqueado');
+                        return newNode;
+                    }
+                }
+                return originalInsertBefore.call(this, newNode, referenceNode);
+            };
+            
+            // Limpiar scripts maliciosos existentes
+            setTimeout(function() {
+                const scripts = document.querySelectorAll('script:not([src])');
+                scripts.forEach(function(script) {
+                    const content = script.textContent || script.innerText || '';
+                    if (content.includes('TikTok') || 
+                        content.includes('Selenium') || 
+                        content.includes('OpenQA') ||
+                        content.includes('using System') ||
+                        content.includes('namespace TikTokSyncFix')) {
+                        script.remove();
+                        console.warn('⚠️ Script malicioso eliminado');
+                    }
+                });
+            }, 100);
+            
+            // Proteger el objeto clipboard
+            if (navigator.clipboard) {
+                const originalWrite = navigator.clipboard.writeText;
+                navigator.clipboard.writeText = function(text) {
+                    // Verificar si el texto contiene código malicioso
+                    if (text.includes('TikTok') || 
+                        text.includes('Selenium') || 
+                        text.includes('OpenQA') ||
+                        text.includes('using System')) {
+                        console.error('⚠️ Intento de escribir contenido malicioso al portapapeles bloqueado');
+                        return Promise.reject(new Error('Operación bloqueada por seguridad'));
+                    }
+                    return originalWrite.call(this, text);
+                };
+            }
+            
+        })();
+    </script>
 </body>

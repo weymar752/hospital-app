@@ -70,6 +70,7 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> Guardar Historial Médico
                 </button>
+                <br>
                 <a href="{{ route('fichas.index') }}" class="btn btn-secondary">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
