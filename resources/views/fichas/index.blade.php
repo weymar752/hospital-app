@@ -32,13 +32,13 @@
             <a href="{{ route('fichas.index') }}" class="btn btn-secondary">
                 <i class="fas fa-list"></i> Todas
             </a>
-            <a href="{{ route('fichas.index', ['fecha' => 'hoy']) }}" class="btn btn-info">
+            <a href="{{ route('fichas.index', ['fecha' => 'hoy']) }}" class="btn btn-secondary">
                 <i class="fas fa-calendar-day"></i> Fichas de Hoy
             </a>
-            <a href="{{ route('fichas.index', ['estado' => 'Programada']) }}" class="btn btn-warning">
+            <a href="{{ route('fichas.index', ['estado' => 'Programada']) }}" class="btn btn-secondary">
                 <i class="fas fa-clock"></i> Programadas
             </a>
-            <a href="{{ route('fichas.index', ['estado' => 'Completada']) }}" class="btn btn-success">
+            <a href="{{ route('fichas.index', ['estado' => 'Completada']) }}" class="btn btn-secondary">
                 <i class="fas fa-check"></i> Completadas
             </a>
             

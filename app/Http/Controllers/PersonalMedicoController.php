@@ -29,7 +29,7 @@ class PersonalMedicoController extends Controller
         $categorias = Categoria::all();
         $unidades = Unidad::all();
 
-        return view('personal.create', compact('hospitales', 'categorias', 'unidades'));
+        return view('personal_medico.create', compact('hospitales', 'categorias', 'unidades'));
     }
 
     /**
@@ -66,7 +66,7 @@ class PersonalMedicoController extends Controller
         $categorias = Categoria::all();
         $unidades = Unidad::all();
 
-        return view('personal.edit', compact('personal', 'hospitales', 'categorias', 'unidades'));
+        return view('personal_medico.edit', compact('personal', 'hospitales', 'categorias', 'unidades'));
     }
 
     /**
