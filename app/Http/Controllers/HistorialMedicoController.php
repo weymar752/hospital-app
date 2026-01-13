@@ -60,8 +60,16 @@ class HistorialMedicoController extends Controller
             'Observaciones' => 'nullable',
         ]);
 
+        // Crear el historial médico
         Historial_Medico::create($request->all());
 
-        return redirect()->back()->with('success', 'Historial médico registrado correctamente.');
+        // Actualizar el estado de la ficha médica a "Completada"
+        $ficha = \App\Models\Ficha_Medica::find($request->No_Ficha_Medica);
+        if ($ficha) {
+            $ficha->Estado_Cita = 'Completada';
+            $ficha->save();
+        }
+
+        return redirect()->back()->with('success', 'Historial médico registrado correctamente. La ficha ha sido marcada como completada.');
     }
 }

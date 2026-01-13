@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if(session('success'))
+<div id="notifModal" class="notif-modal" style="display:none;">
+    <div class="notif-modal-content">
+        <span id="notifClose" class="notif-close">&times;</span>
+        <h3>✓ HISTORIAL MÉDICO GUARDADO</h3>
+        <p>{{ session('success') }}</p>
+        <button id="notifOk" class="btn btn-primary" data-redirect-url="{{ route('fichas.index') }}">Aceptar</button>
+    </div>
+</div>
+<!-- Script para redirigir al hacer clic en Aceptar -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var btnOk = document.getElementById('notifOk');
+    if(btnOk && btnOk.hasAttribute('data-redirect-url')) {
+        btnOk.addEventListener('click', function() {
+            window.location.href = this.getAttribute('data-redirect-url');
+        });
+    }
+});
+</script>
+@endif
+
 <div class="form-container">
     <h2>Registrar Historial Médico</h2>
 
