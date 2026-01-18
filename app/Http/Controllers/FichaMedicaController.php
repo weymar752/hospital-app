@@ -57,7 +57,7 @@ class FichaMedicaController extends Controller
                     ->orderBy('Ficha_Medica.Hora_Cita', 'asc')
                     ->get();
 
-    // Obtener unidades del hospital del médico para el filtro
+    // Obtener unidades del hospital del médico para el filtron
     $unidades = collect(); // Colección vacía por defecto
     if ($tipoUsuario === 'medico' && $usuario) {
         $unidades = Unidad::where('ID_Hospital', $usuario->ID_Hospital)->get();
